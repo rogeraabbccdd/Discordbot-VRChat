@@ -1,5 +1,6 @@
 import * as Discord from 'discord.js'
 import { bot } from '../bot'
+import { loginUrlShort, inviteUrl } from '../utils/misc'
 
 export default async (message: Discord.Message): Promise<void> => {
   const avatar: string = `https://cdn.discordapp.com/avatars/${bot.user?.id || ''}/${bot.user?.avatar || ''}.png`
@@ -33,6 +34,10 @@ export default async (message: Discord.Message): Promise<void> => {
       {
         name: 'Your VRChat Profile',
         value: '`vrc.me`'
+      },
+      {
+        name: 'Add Bot',
+        value: inviteUrl
       },
       {
         name: 'Source Code',

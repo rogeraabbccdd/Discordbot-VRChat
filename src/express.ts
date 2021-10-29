@@ -1,6 +1,6 @@
 import * as express from 'express'
 import { link } from './controllers/users'
-import { loginUrl, loginUrlShort } from './utils/misc'
+import { loginUrl, loginUrlShort, inviteUrl } from './utils/misc'
 
 // Init Express server for link account page
 export const app: express.Application = express()
@@ -21,6 +21,10 @@ app.post('/link', link)
 
 app.get('/link', (req: express.Request, res: express.Response) => {
   res.redirect(loginUrl)
+})
+
+app.get('/invite', (req: express.Request, res: express.Response) => {
+  res.redirect(inviteUrl)
 })
 
 // Handle web requests
