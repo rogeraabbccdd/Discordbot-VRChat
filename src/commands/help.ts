@@ -33,7 +33,7 @@ export default async (message: Discord.Message): Promise<void> => {
       },
       {
         name: 'Your VRChat Profile',
-        value: '`vrc.me`'
+        value: '`vrc.me` or ' + loginUrlShort
       },
       {
         name: 'Add Bot',
