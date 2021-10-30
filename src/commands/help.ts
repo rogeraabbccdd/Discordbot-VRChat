@@ -10,6 +10,7 @@ export default async (message: Discord.Message): Promise<void> => {
     .setDescription('A Discord bot for VRChat communities.')
     .setThumbnail(avatar)
     .setColor('#1a2026')
+    .setFooter('Made with ❤ by Kento.')
     .addFields([
       {
         name: 'Search User ID',
