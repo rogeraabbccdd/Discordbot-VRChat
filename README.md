@@ -1,6 +1,9 @@
 # VRChat Discord Bot
 Discord bot for VRChat community.
 
+## Invite Link
+- [Click here to add bot to your server.](https://discord.com/oauth2/authorize?client_id=902091687663378433&permissions=8&scope=bot%20applications.commands)
+
 ## Setup
 - [Create a Disord application](https://discord.com/developers/applications)
 - Install [Node.js >= 17.0.0](https://nodejs.org/en/), [Yarn](https://yarnpkg.com/) and [MongoDB](https://www.mongodb.com/)
