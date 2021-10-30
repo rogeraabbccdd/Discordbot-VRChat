@@ -3,7 +3,7 @@ import { bot } from '../bot'
 import { loginUrlShort, inviteUrl } from '../utils/misc'
 
 export default async (message: Discord.Message): Promise<void> => {
-  const avatar: string = `https://cdn.discordapp.com/avatars/${bot.user?.id || ''}/${bot.user?.avatar || ''}.png`
+  const avatar: string = `https://cdn.discordapp.com/avatars/${bot?.user?.id || ''}/${bot?.user?.avatar || ''}.png`
   const embed: Discord.MessageEmbed = new Discord.MessageEmbed()
     .setTitle('Discord VRChat Bot')
     .setURL('https://github.com/rogeraabbccdd/Discordbot-VRChat')

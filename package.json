@@ -8,6 +8,10 @@
     "build": "npx tsc",
     "prestart": "npm run build",
     "start": "node dist/index.js",
+    "prestart-web": "npm run build",
+    "start-web": "node dist/index.js -web",
+    "prestart-bot": "npm run build",
+    "start-bot": "node dist/index.js -bot",
     "dev": "nodemon --watch src/ -e ts --exec \"npm run start\""
   },
   "devDependencies": {
