@@ -21,6 +21,7 @@ Discord bot for VRChat community.
 - `vrc.world xxx` - Search 60 worlds by name.
 - `vrc.link` - Link your VRChat ID and Discord ID.
 - `vrc.me` - Show your VRChat profile.
+- `vrc.profile @xxx` - Show mentioned user's VRChat profile.
 
 ## Screenshots
 ![](screenshots/page.png)

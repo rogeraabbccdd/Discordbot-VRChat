@@ -5,13 +5,18 @@ import { getLanguageFromTags, getLevelFromTags, getUserPageFromID, Level } from 
 import { loginUrlShort } from '../utils/misc'
 import axios, { AxiosError, AxiosResponse } from 'axios'
 
-export default async (message: Discord.Message, me: boolean = false): Promise<void> => {
+export default async (message: Discord.Message, type: 'me'|'search'|'profile' = 'search'): Promise<void> => {
   try {
     let id: string = ''
-    if (!me) {
+    if (type === 'search') {
       id = message.content.trim().replace('vrc.uid ', '')
-    } else {
+    } else if (type === 'me') {
       id = await findVRCID(message.author.id)
+    } else if (type === 'profile') {
+      const mention = message.mentions.users.first()?.id || ''
+      if (mention.length > 0) {
+        id = await findVRCID(mention)
+      }
     }
     if (id.length > 0) {
       const { data: user } = await usersApi.getUser(id)
@@ -81,18 +86,20 @@ export default async (message: Discord.Message, me: boolean = false): Promise<vo
       // }
       message.reply({ embeds: [embed] })
     } else {
-      if (!me) {
+      if (type === 'search') {
         message.reply('Please use `vrc.uid <userid>`')
-      } else {
+      } else if (type === 'me') {
         message.reply(`Your account has not linked yet.\n${loginUrlShort}`)
+      } else if (type === 'profile') {
+        message.reply('No mentioned user or user account not linked yet.')
       }
     }
   } catch (error: unknown) {
     if (axios.isAxiosError(error)) {
       const { response } = error as AxiosError<AxiosResponse>
       if (response?.status === 404) {
-        if (!me) message.reply('User not found.')
-        else message.reply('Your account has not linked yet.\n' + loginUrlShort)
+        if (type === 'me') message.reply('Your account has not linked yet.\n' + loginUrlShort)
+        else message.reply('User ')
       } else {
         message.reply('Server Error.')
       }

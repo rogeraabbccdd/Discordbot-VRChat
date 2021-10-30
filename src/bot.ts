@@ -29,7 +29,7 @@ if (process.argv.includes('-bot') || (!process.argv.includes('-web') && !process
 
     if (message.content.startsWith('vrc.uid ')) {
       // Search user id
-      searchUserID(message)
+      searchUserID(message, 'search')
     } else if (message.content.startsWith('vrc.user ')) {
       // Search user name
       searchUser(message)
@@ -44,7 +44,10 @@ if (process.argv.includes('-bot') || (!process.argv.includes('-web') && !process
       message.reply(loginUrlShort)
     } else if (message.content.startsWith('vrc.me')) {
       // My ID
-      searchUserID(message, true)
+      searchUserID(message, 'me')
+    } else if (message.content.startsWith('vrc.profile ')) {
+      // My ID
+      searchUserID(message, 'profile')
     } else if (message.content.startsWith('vrc.help')) {
       // Help
       help(message)

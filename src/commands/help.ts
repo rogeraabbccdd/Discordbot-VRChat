@@ -36,6 +36,10 @@ export default async (message: Discord.Message): Promise<void> => {
         value: '`vrc.me` or ' + loginUrlShort
       },
       {
+        name: 'Other User VRChat Profile',
+        value: 'Show mentioned user\'s VRChat profile.\n`vrc.profile @user`'
+      },
+      {
         name: 'Add Bot',
         value: inviteUrl
       },
