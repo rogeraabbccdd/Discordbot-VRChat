@@ -30,11 +30,11 @@ export default async (message: Discord.Message): Promise<void> => {
       },
       {
         name: 'Link VRChat Account',
-        value: '`vrc.link`'
+        value: '`vrc.link` or ' + loginUrlShort
       },
       {
         name: 'Your VRChat Profile',
-        value: '`vrc.me` or ' + loginUrlShort
+        value: '`vrc.me`'
       },
       {
         name: 'Other User VRChat Profile',
