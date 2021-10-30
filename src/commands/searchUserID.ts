@@ -1,9 +1,10 @@
 import * as Discord from 'discord.js'
+import * as FileType from 'file-type'
+import axios, { AxiosError, AxiosResponse } from 'axios'
 import { findVRCID } from '../controllers/users'
 import { usersApi } from '../vrc'
 import { getLanguageFromTags, getLevelFromTags, getUserPageFromID, Level } from '../utils/vrc'
 import { loginUrlShort } from '../utils/misc'
-import axios, { AxiosError, AxiosResponse } from 'axios'
 
 export default async (message: Discord.Message, type: 'me'|'search'|'profile' = 'search'): Promise<void> => {
   try {
@@ -26,7 +27,6 @@ export default async (message: Discord.Message, type: 'me'|'search'|'profile' = 
       const embed: Discord.MessageEmbed = new Discord.MessageEmbed()
         .setTitle(user.displayName)
         .setDescription(user.statusDescription)
-        .setThumbnail(user.currentAvatarImageUrl)
         .setURL(getUserPageFromID(user.id))
         .setColor(level.color as Discord.HexColorString)
         .addFields([
@@ -84,7 +84,18 @@ export default async (message: Discord.Message, type: 'me'|'search'|'profile' = 
       //     }
       //   ])
       // }
-      message.reply({ embeds: [embed] })
+      embed.setThumbnail(user.profilePicOverride || user.currentAvatarImageUrl)
+      if (user.profilePicOverride.length > 0) {
+        const { data } = await axios.get(user.profilePicOverride, { responseType: 'stream' })
+        const type = await FileType.fromStream(data)
+        const fileName: string = `image.${type?.ext || ''}`
+        const attachment: Discord.MessageAttachment = new Discord.MessageAttachment(user.profilePicOverride, fileName)
+        embed.setThumbnail(`attachment://${fileName}`)
+        message.reply({ embeds: [embed], files: [attachment] })
+      } else {
+        embed.setThumbnail(user.currentAvatarImageUrl)
+        message.reply({ embeds: [embed] })
+      }
     } else {
       if (type === 'search') {
         message.reply('Please use `vrc.uid <userid>`')
