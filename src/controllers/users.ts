@@ -6,8 +6,7 @@ import axios, { AxiosError } from 'axios'
 import users from '../models/users'
 
 interface LinkPostData {
-  username: string
-  password: string
+  auth: string,
   twofa: string,
   code: string
 }
@@ -16,7 +15,7 @@ export const link = async (req: express.Request, res: express.Response): Promise
   const dataPost: LinkPostData = req.body
 
   // Check post data format, 2fa code is not necessary
-  if (!dataPost.username || !dataPost.password || !dataPost.code) {
+  if (!dataPost.auth || !dataPost.code) {
     res.status(400).send({ message: 'Invalid Data Format' })
     return
   }
@@ -32,7 +31,7 @@ export const link = async (req: express.Request, res: express.Response): Promise
     // So we use node-fetch instead
     let response: Response = await fetch('https://api.vrchat.cloud/api/1/auth/user', {
       headers: {
-        Authorization: 'Basic ' + Buffer.from(`${dataPost.username}:${dataPost.password}`).toString('base64')
+        Authorization: 'Basic ' + dataPost.auth
       }
     })
     const dataUser: vrchat.User = await response.json() as vrchat.User
@@ -54,7 +53,7 @@ export const link = async (req: express.Request, res: express.Response): Promise
       }
       response = await fetch('https://api.vrchat.cloud/api/1/auth/user', {
         headers: {
-          Authorization: 'Basic ' + Buffer.from(`${dataPost.username}:${dataPost.password}`).toString('base64'),
+          Authorization: 'Basic ' + dataPost.auth,
           cookie
         }
       })

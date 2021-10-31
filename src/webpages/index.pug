@@ -63,7 +63,7 @@ html(lang="en")
     script(src="https://unpkg.com/vue@3.2.20/dist/vue.global.prod.js")
     script(src="https://cdn.jsdelivr.net/npm/sweetalert2@11")
     script.
-      const { ref, reactive, onCreated  } = Vue
+      const { ref, reactive, onCreated } = Vue
 
       const app = Vue.createApp({
         setup () {
@@ -89,7 +89,7 @@ html(lang="en")
           const login = async (e) => {
             e.preventDefault()
             try {
-              const { data } = await axios.post('!{apiURL}', {...form, code: query.code})
+              const { data } = await axios.post('!{apiURL}', { auth: btoa(`${form.username}:${form.password}`), twofa: form.twofa, code: query.code})
               Swal.fire({
                 icon: 'success',
                 title: 'Success!',
