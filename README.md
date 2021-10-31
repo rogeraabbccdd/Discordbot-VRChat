@@ -2,7 +2,7 @@
 Discord bot for VRChat community.
 
 ## Invite Link
-- [Click here to add bot to your server.](https://discord.com/oauth2/authorize?client_id=902091687663378433&permissions=8&scope=bot%20applications.commands)
+- [Click here to add bot to your server.](https://discord.com/oauth2/authorize?client_id=902091687663378433&permissions=274877958208&scope=bot%20applications.commands)
 
 ## Setup
 - [Create a Disord application](https://discord.com/developers/applications)

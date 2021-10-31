@@ -2,7 +2,7 @@ export const loginUrl = `https://discord.com/api/oauth2/authorize?client_id=${pr
 
 export const loginUrlShort = new URL('/link', process.env.HOST_URL).toString()
 
-export const inviteUrl = 'https://discord.com/oauth2/authorize?client_id=902091687663378433&permissions=8&scope=bot%20applications.commands'
+export const inviteUrl = 'https://discord.com/oauth2/authorize?client_id=902091687663378433&permissions=274877958208&scope=bot%20applications.commands'
 
 export const splitToBulks = <T>(arr: T[], bulkSize: number = 20): T[][] => {
   const bulks: T[][] = []
